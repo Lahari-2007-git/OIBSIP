@@ -26,6 +26,7 @@ The objective of this task is to perform **Exploratory Data Analysis (EDA)** on 
    - Checked shape, data types, and missing values.
    - Converted `Date` column to datetime format.
 
+
 2. **Descriptive Statistics**
    - Calculated mean, median, mode, and standard deviation.
    - Summarized numerical and categorical features.
@@ -49,6 +50,33 @@ The objective of this task is to perform **Exploratory Data Analysis (EDA)** on 
 7. **Additional Insights**
    - Compared average spending by gender across categories.
 
+## 📸 Visualizations
+
+### 1. Monthly Sales Trend
+![Monthly Sales Trend](screenshots/Monthly sales trend.png)
+
+### 2. Quarterly Sales Trend
+![Quarterly Sales Trend](screenshots/Quarterly sales trend.png)
+
+### 3. Customer Gender Distribution
+![Customer Gender Distribution](screenshots/Customer gender distribution.png)
+
+### 4. Customer Age Distribution
+![Customer Age Distribution](screenshots/Customer age distribution.png)
+
+### 5. Spending by Age Group
+![Spending by Age Group](screenshots/Spending by age group.png)
+
+### 6. Revenue by Product Category
+![Revenue by Product Category](screenshots/Revenue by product category.png)
+
+### 7. Correlation Matrix
+![Correlation Matrix](screenshots/Correlation matrix.png)
+
+### 8. Average Spending by Gender per Category
+![Average Spending by Gender per Category](screenshots/Average spending by gender per c....png)
+
+
 ---
 
 ## 📊 Key Results
@@ -59,11 +87,6 @@ The objective of this task is to perform **Exploratory Data Analysis (EDA)** on 
 
 ---
 
-## 🎥 Demo Video
-A screen-recorded walkthrough of the project has been uploaded to LinkedIn.  
-👉 [Insert LinkedIn Post Link Here]
-
----
 
 ## 📁 Repository Structure
 OIBSIP/DataAnalytics-L1-EDARetailSales/
