@@ -1,0 +1,87 @@
+# Task 1 – Exploratory Data Analysis on Retail Sales Dataset
+
+## 📌 Project Overview
+This project is part of my Oasis Infobyte Internship (Data Analytics Track).  
+The objective of this task is to perform **Exploratory Data Analysis (EDA)** on a retail sales dataset to uncover customer behavior, product performance, and sales trends.
+
+---
+
+## 🛠️ Tech Stack
+- Python  
+- Pandas  
+- Matplotlib  
+- Seaborn  
+
+---
+
+## 📂 Dataset
+- **File Name:** retail_sales_dataset.csv  
+- **Columns:** Transaction ID, Date, Customer ID, Gender, Age, Product Category, Quantity, Price per Unit, Total Amount.  
+- The dataset contains transaction-level details with demographics and sales information.
+
+---
+
+## ⚙️ Steps Performed
+1. **Data Loading & Inspection**
+   - Checked shape, data types, and missing values.
+   - Converted `Date` column to datetime format.
+
+2. **Descriptive Statistics**
+   - Calculated mean, median, mode, and standard deviation.
+   - Summarized numerical and categorical features.
+
+3. **Time Series Analysis**
+   - Monthly and quarterly sales trends plotted.
+   - Seasonal peaks identified (e.g., festive months).
+
+4. **Customer Demographics**
+   - Gender distribution (bar chart).
+   - Age distribution (histogram).
+   - Spending analysis by age groups.
+
+5. **Product Analysis**
+   - Revenue by product category (bar chart).
+   - Top transactions identified.
+
+6. **Correlation Analysis**
+   - Heatmap showing relationships between Age, Quantity, Price per Unit, and Total Amount.
+
+7. **Additional Insights**
+   - Compared average spending by gender across categories.
+
+---
+
+## 📊 Key Results
+- **Top Categories:** Electronics and Clothing dominate revenue.  
+- **Peak Sales Months:** November and December show seasonal spikes.  
+- **Customer Insights:** Age groups 25–35 and 45–55 spend the most.  
+- **Gender Trends:** Female customers spend more on Clothing/Beauty, while males spend more on Electronics.
+
+---
+
+## 🎥 Demo Video
+A screen-recorded walkthrough of the project has been uploaded to LinkedIn.  
+👉 [Insert LinkedIn Post Link Here]
+
+---
+
+## 📁 Repository Structure
+OIBSIP/DataAnalytics-L1-EDARetailSales/
+│── task1.py
+│── retail_sales_dataset.csv
+│── README.md
+│── screenshots/
+
+
+---
+
+## 🙌 Conclusion & Recommendations
+1. Increase stock and marketing during peak months (Nov, Dec).  
+2. Target promotions to age groups 25–35 and 45–55.  
+3. Focus on Electronics and Clothing categories for maximum revenue.  
+
+---
+
+## ✨ Author
+**Lahari Varaganti**  
+Data A Intern – Oasis Infobyte
