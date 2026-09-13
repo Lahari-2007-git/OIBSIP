@@ -1,0 +1,506 @@
+# 🛍️ Customer Segmentation Analysis
+
+## 📌 Project Overview
+
+This project performs **Customer Segmentation Analysis** on an e-commerce dataset using **RFM (Recency, Frequency, Monetary) analysis** and **K-Means clustering**.
+
+The analysis aims to understand customer purchasing behaviour, identify different customer groups, and provide **data-driven marketing recommendations** for each segment.
+
+The project also includes basic business analysis such as total sales, total orders, total customers, average order value, monthly sales trends, top-selling products, and top countries by sales.
+
+---
+
+## 🎯 Objective
+
+The main objectives of this project are to:
+
+* Analyze e-commerce customer purchasing behaviour.
+* Clean and prepare transaction data.
+* Perform basic business analysis.
+* Calculate **Recency, Frequency, and Monetary (RFM)** metrics.
+* Handle skewed RFM data using log transformation.
+* Standardize the features using `StandardScaler`.
+* Determine a suitable number of clusters using the **Elbow Method** and **Silhouette Score**.
+* Apply **K-Means clustering**.
+* Profile and visualize customer clusters.
+* Classify customers into meaningful customer types.
+* Recommend suitable marketing strategies for each customer segment.
+* Export the final customer segmentation data to a CSV file.
+
+---
+
+## 🛠️ Technologies Used
+
+* **Python**
+* **Pandas** – Data manipulation and analysis
+* **NumPy** – Numerical operations
+* **Matplotlib** – Data visualization
+* **Seaborn** – Statistical visualization
+* **Scikit-learn**
+
+  * `StandardScaler`
+  * `KMeans`
+  * `silhouette_score`
+* **Jupyter Notebook**
+
+The project imports these libraries for data analysis, visualization, preprocessing, clustering, and evaluation.
+
+---
+
+## 📊 Dataset
+
+The project uses the **Online Retail dataset**.
+
+The dataset is loaded from:
+
+```python
+df = pd.read_csv("Online Retail.csv")
+```
+
+The dataset contains transaction-level information including customer IDs, invoice details, dates, quantities, unit prices, products, and countries.
+
+---
+
+# 🔄 Project Workflow
+
+```text
+Online Retail Dataset
+        ↓
+Data Cleaning
+        ↓
+Basic Business Analysis
+        ↓
+RFM Analysis
+        ↓
+Log Transformation
+        ↓
+Feature Standardization
+        ↓
+Elbow Method
+        ↓
+Silhouette Score
+        ↓
+K-Means Clustering
+        ↓
+Cluster Profiling
+        ↓
+Customer Type Classification
+        ↓
+Marketing Recommendations
+        ↓
+Final Customer Segmentation CSV
+```
+
+---
+
+## 🧹 1. Data Cleaning
+
+The dataset is inspected for:
+
+* Missing values
+* Duplicate records
+* Invalid transactions
+* Cancelled invoices
+
+The following cleaning steps are performed:
+
+* Remove records without `CustomerID`.
+* Remove duplicate rows.
+* Remove cancelled invoices.
+* Keep only positive `Quantity` values.
+* Keep only positive `UnitPrice` values.
+* Convert `CustomerID` to integer.
+* Convert `InvoiceDate` to datetime format.
+
+A new `TotalAmount` feature is created using:
+
+```python
+TotalAmount = Quantity × UnitPrice
+```
+
+These cleaning and transformation steps are implemented in the project code.
+
+---
+
+# 💼 2. Basic Business Analysis
+
+Before customer segmentation, the project calculates:
+
+* **Total Sales**
+* **Total Orders**
+* **Total Customers**
+* **Average Order Value**
+
+The project also analyzes:
+
+### 📈 Monthly Sales Trend
+
+A line chart is created to understand how sales change over time.
+
+### 🏆 Top 10 Products
+
+The top 10 products are identified based on total sales.
+
+### 🌍 Top 10 Countries
+
+Countries are ranked according to their total sales.
+
+These analyses provide an overall understanding of the e-commerce business before performing customer segmentation.
+
+---
+
+# 📋 3. RFM Analysis
+
+RFM analysis is used to understand customer purchasing behaviour.
+
+### 🔵 Recency
+
+Measures **how recently a customer made a purchase**.
+
+* Lower Recency → More recently active
+* Higher Recency → Less recently active
+
+### 🟢 Frequency
+
+Measures **how frequently a customer purchases**.
+
+* Higher Frequency → More frequent purchases
+
+### 🟠 Monetary
+
+Measures **how much money a customer has spent**.
+
+* Higher Monetary → Higher customer value
+
+The RFM values are calculated for each customer using their transaction history.
+
+---
+
+## 📊 RFM Descriptive Statistics
+
+The project calculates descriptive statistics for the RFM features, including:
+
+* Mean
+* Standard deviation
+* Minimum
+* Maximum
+* Quartiles
+
+It also calculates:
+
+* Average Purchase Value
+* Average Purchase Frequency
+* Average Customer Lifetime Value
+
+In this implementation, customer lifetime value is represented using the customer's total monetary spending.
+
+---
+
+# 📉 4. RFM Distribution Analysis
+
+Histograms are created for:
+
+* Recency
+* Frequency
+* Monetary
+
+These visualizations help understand the distribution of customer behaviour and identify skewness in the RFM features.
+
+---
+
+# 🔢 5. Log Transformation
+
+RFM data can contain highly skewed values, especially Frequency and Monetary.
+
+To reduce the effect of extreme values, the project applies a log transformation:
+
+```python
+rfm_log = np.log1p(rfm)
+```
+
+This transforms the RFM features before standardization.
+
+---
+
+# ⚖️ 6. Feature Standardization
+
+The transformed RFM features are standardized using `StandardScaler`.
+
+```python
+scaler = StandardScaler()
+
+rfm_scaled = scaler.fit_transform(rfm_log)
+```
+
+Standardization ensures that the RFM features are placed on a comparable scale before applying K-Means clustering.
+
+---
+
+# 📐 7. Elbow Method
+
+The **Elbow Method** is used to evaluate different values of K from **2 to 10**.
+
+For each value of K, K-Means inertia is calculated and plotted.
+
+```python
+for k in range(2, 11):
+    kmeans = KMeans(
+        n_clusters=k,
+        random_state=42,
+        n_init=10
+    )
+```
+
+The resulting graph helps identify a suitable number of clusters.
+
+---
+
+# 📏 8. Silhouette Score
+
+The project also uses the **Silhouette Score** to evaluate clustering quality.
+
+Silhouette scores are calculated for K values from **2 to 10**.
+
+A higher silhouette score generally indicates better-defined clusters.
+
+---
+
+# 🤖 9. K-Means Clustering
+
+The project applies **K-Means clustering with 4 clusters**.
+
+```python
+optimal_k = 4
+
+kmeans = KMeans(
+    n_clusters=optimal_k,
+    random_state=42,
+    n_init=10
+)
+
+rfm["Cluster"] = kmeans.fit_predict(rfm_scaled)
+```
+
+Each customer is assigned to one of the four clusters.
+
+---
+
+# 👥 10. Cluster Analysis
+
+The project calculates the number of customers in each cluster.
+
+A bar chart is created to visualize the customer distribution across clusters.
+
+---
+
+## 📊 Cluster Profiling
+
+Each cluster is profiled using the mean values of:
+
+* Recency
+* Frequency
+* Monetary
+* Customer Count
+* Customer Percentage
+
+This helps understand the characteristics of customers belonging to each cluster.
+
+A **heatmap** is also created to compare RFM characteristics across clusters.
+
+---
+
+# 📈 11. Cluster Visualizations
+
+The project visualizes customer clusters using three scatter plots:
+
+### Recency vs Frequency
+
+Shows the relationship between how recently and how frequently customers purchase.
+
+### Frequency vs Monetary
+
+Shows the relationship between purchase frequency and total spending.
+
+### Recency vs Monetary
+
+Shows the relationship between customer activity and total spending.
+
+The clusters are differentiated using color to make the customer groups easier to interpret.
+
+---
+
+# 🏷️ 12. Customer Segment Classification
+
+In addition to K-Means cluster labels, customers are classified into four meaningful customer types using the **median values of Recency, Frequency, and Monetary**.
+
+The four customer types are:
+
+### 🏆 High Value Customers
+
+Customers who are relatively recent, purchase frequently, and have high monetary value.
+
+### 💎 Loyal Customers
+
+Customers with relatively recent and frequent purchases.
+
+### ⚠️ At Risk Customers
+
+Customers whose Recency is higher than the median, indicating that they have not purchased recently.
+
+### 🌱 New / Low Value Customers
+
+Customers who do not fall into the above categories and may require further engagement.
+
+The customer type is assigned using the `identify_segment()` function in the project.
+
+---
+
+# 📊 13. Customer Segment Distribution
+
+A bar chart is created to show the number of customers belonging to each customer type.
+
+This provides a simple view of the overall customer segment distribution.
+
+---
+
+# 📢 14. Marketing Recommendations
+
+The project provides marketing recommendations based on customer behaviour.
+
+| Customer Type                | Recommended Action                                                       |
+| ---------------------------- | ------------------------------------------------------------------------ |
+| 🏆 High Value Customers      | Exclusive offers, loyalty rewards, premium and repeat-purchase campaigns |
+| 💎 Loyal Customers           | Loyalty points, personalized recommendations, referral programs          |
+| ⚠️ At Risk Customers         | Re-engagement emails, special discounts, limited-time promotions         |
+| 🌱 New / Low Value Customers | Welcome offers, popular products and affordable recommendations          |
+
+These recommendations are included directly in the project output.
+
+---
+
+# 📋 15. Final Customer Segment Summary
+
+A final summary is generated containing:
+
+* Average Recency
+* Average Frequency
+* Average Monetary Value
+* Customer Count
+
+for each customer type.
+
+This provides a consolidated view of the final customer segments.
+
+---
+
+# 💾 16. Output File
+
+The final customer segmentation dataset is exported as:
+
+```text
+customer_segments.csv
+```
+
+The file contains the customer-level RFM information, cluster assignment, and customer type.
+
+---
+
+# 📁 Project Structure
+
+```text
+Customer-Segmentation-Analysis/
+│
+├── Online Retail.csv
+├── Customer_Segmentation_Analysis.ipynb
+├── customer_segments.csv
+├── README.md
+│
+└── visualizations/
+    ├── monthly_sales_trend.png
+    ├── top_products.png
+    ├── rfm_distributions.png
+    ├── elbow_method.png
+    ├── silhouette_score.png
+    ├── customers_per_cluster.png
+    ├── cluster_profile.png
+    ├── recency_frequency.png
+    ├── frequency_monetary.png
+    ├── recency_monetary.png
+    └── customer_segments.png
+```
+
+---
+
+# 🚀 How to Run
+
+### 1. Clone the repository
+
+```bash
+git clone <your-github-repository-link>
+```
+
+### 2. Install required libraries
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+```
+
+### 3. Place the dataset
+
+Make sure `Online Retail.csv` is available in the project directory.
+
+### 4. Open the notebook
+
+```bash
+jupyter notebook
+```
+
+Open:
+
+```text
+Customer_Segmentation_Analysis.ipynb
+```
+
+### 5. Run the notebook
+
+Run the cells sequentially to perform the complete analysis.
+
+---
+
+# 💡 Key Takeaways
+
+This project demonstrates how customer transaction data can be transformed into actionable business insights using data science techniques.
+
+The analysis combines:
+
+**Data Cleaning → Business Analysis → RFM Analysis → Data Transformation → Standardization → K-Means Clustering → Cluster Profiling → Customer Segmentation → Marketing Recommendations**
+
+The final output helps businesses understand customer behaviour and develop more targeted marketing strategies.
+
+---
+
+# 🎓 Skills Demonstrated
+
+`Python`
+`Pandas`
+`NumPy`
+`Matplotlib`
+`Seaborn`
+`Scikit-learn`
+`RFM Analysis`
+`K-Means Clustering`
+`Customer Segmentation`
+`Data Visualization`
+`Exploratory Data Analysis`
+`Business Analytics`
+
+---
+
+## 👩‍💻 Author
+
+**Lahari Varaganti**
+
+B.Sc. Data Science Student
+
+**Internship:** Oasis Infobyte
+**Task:** Task 2 – Customer Segmentation Analysis
