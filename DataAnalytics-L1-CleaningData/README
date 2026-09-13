@@ -1,0 +1,236 @@
+# 🧹 OIBSIP Level 1 – Task 3: Data Cleaning
+
+## 📌 Project Overview
+
+This project focuses on performing **professional data cleaning and preprocessing** on a deliberately messy retail sales dataset.
+
+The objective is to identify and handle common data quality issues such as **missing values, duplicate records, inconsistent formatting, incorrect data types, invalid values, and outliers**.
+
+The cleaned dataset is then validated and exported as a new CSV file for further analysis.
+
+---
+
+## 🎯 Objective
+
+To demonstrate practical data-cleaning skills using Python and Pandas by:
+
+* Identifying data quality issues
+* Handling missing values appropriately
+* Removing duplicate records
+* Standardizing inconsistent data
+* Correcting data types
+* Converting dates into the proper format
+* Detecting and handling outliers using the IQR method
+* Validating business rules
+* Comparing data quality before and after cleaning
+* Exporting the cleaned dataset
+
+---
+
+## 📊 Dataset
+
+**Dataset:** Dirty Retail Store Sales
+
+The dataset contains retail transaction information including:
+
+* Transaction ID
+* Customer ID
+* Category
+* Item
+* Price Per Unit
+* Quantity
+* Total Spent
+* Payment Method
+* Location
+* Transaction Date
+* Discount Applied
+
+The dataset contains intentionally introduced data-quality problems, making it suitable for practicing real-world data-cleaning techniques.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Python**
+* **Pandas**
+* **NumPy**
+* **Matplotlib**
+* **Jupyter Notebook**
+
+---
+
+## 🔍 Data Cleaning Process
+
+### 1. Data Inspection
+
+The dataset was initially inspected to understand:
+
+* Number of rows and columns
+* Column names
+* Data types
+* Missing values
+* Duplicate records
+* Numerical value ranges
+* Basic descriptive statistics
+
+### 2. Missing Value Handling
+
+Different strategies were used depending on the nature of each column:
+
+* **Item:** Missing values replaced with `Unknown`
+* **Price Per Unit:** Median imputation
+* **Quantity:** Median imputation
+* **Total Spent:** Recalculated using Quantity × Price Per Unit
+* **Discount Applied:** Mode-based imputation
+
+### 3. Duplicate Removal
+
+Duplicate records were identified and removed to prevent repeated transactions from affecting the analysis.
+
+### 4. Text Standardization
+
+Text fields were standardized by:
+
+* Removing unnecessary spaces
+* Standardizing capitalization
+* Converting item names to a consistent format
+* Standardizing payment methods and locations
+
+### 5. Date Standardization
+
+The `Transaction Date` column was converted into the **datetime** format.
+
+Invalid dates were identified and handled appropriately.
+
+### 6. Data Type Correction
+
+Data types were corrected according to their purpose:
+
+* Transaction ID → String
+* Customer ID → String
+* Transaction Date → Datetime
+* Price Per Unit → Numeric
+* Quantity → Numeric
+* Total Spent → Numeric
+* Discount Applied → Boolean
+
+### 7. Logical Data Validation
+
+The dataset was checked for invalid values such as:
+
+* Zero or negative quantities
+* Zero or negative prices
+* Zero or negative total spending
+
+Invalid records were removed where necessary.
+
+### 8. Total Spent Validation
+
+A business-rule validation was performed:
+
+**Total Spent = Quantity × Price Per Unit**
+
+The `Total Spent` values were recalculated to ensure consistency.
+
+### 9. Outlier Detection
+
+The **Interquartile Range (IQR)** method was used to identify potential outliers in numerical columns such as:
+
+* Quantity
+* Price Per Unit
+* Total Spent
+
+Boxplots were also used to visually inspect potential outliers.
+
+Extreme values were handled using **IQR-based capping** rather than automatically deleting potentially valid transactions.
+
+### 10. Before vs After Comparison
+
+Data quality was compared before and after cleaning using:
+
+* Number of rows
+* Number of duplicate records
+* Total missing values
+* Data types
+
+### 11. Final Validation
+
+Final checks were performed to ensure:
+
+* No missing values remained
+* No duplicate rows remained
+* Numerical values were valid
+* IDs were stored correctly
+* Transaction dates were in datetime format
+* Business rules were satisfied
+
+---
+
+## 📈 Key Data Quality Improvements
+
+| Data Quality Area | Before Cleaning | After Cleaning |
+| ----------------- | --------------- | -------------- |
+| Missing Values    | Present         | Handled        |
+| Duplicate Records | Checked         | Removed        |
+| Inconsistent Text | Present         | Standardized   |
+| Date Format       | Corrected       | Datetime       |
+| Data Types        | Reviewed        | Corrected      |
+| Invalid Values    | Checked         | Handled        |
+| Outliers          | Detected        | Handled        |
+| Total Spent       | Validated       | Recalculated   |
+
+---
+
+## 📁 Project Structure
+
+```text
+OIBSIP/
+│
+└── DataAnalytics-L1-CleaningData/
+    │
+    ├── Dirty Retail Store Sales.csv
+    ├── Data_Cleaning.ipynb
+    ├── cleaned_retail_sales.csv
+    └── README.md
+```
+
+---
+
+## 📄 Output
+
+The final cleaned dataset is saved as:
+
+```text
+cleaned_retail_sales.csv
+```
+
+This cleaned file can be used for further **Exploratory Data Analysis (EDA), visualization, and business analytics**.
+
+---
+
+## 💡 Skills Demonstrated
+
+* Data Cleaning
+* Data Preprocessing
+* Missing Value Treatment
+* Duplicate Detection
+* Data Type Conversion
+* Text Standardization
+* Date Handling
+* Outlier Detection
+* IQR Method
+* Data Validation
+* Business Rule Validation
+* Pandas
+* NumPy
+* Data Quality Reporting
+
+---
+
+---
+
+## ✅ Conclusion
+
+This project demonstrates a practical approach to cleaning and preparing messy real-world data for analysis.
+
+By systematically identifying and resolving data-quality issues, the dataset was transformed into a more **consistent, reliable, and analysis-ready format**.
