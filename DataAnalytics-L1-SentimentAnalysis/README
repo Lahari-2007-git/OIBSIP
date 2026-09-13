@@ -1,0 +1,300 @@
+# 💬 OIBSIP Level 1 – Task 4: Sentiment Analysis
+
+## 📌 Project Overview
+
+This project focuses on building a **Machine Learning-based Sentiment Analysis system** to classify text data into three sentiment categories: **Positive, Negative, and Neutral**.
+
+The project uses Natural Language Processing (NLP) techniques to preprocess Twitter text, convert the text into numerical features using **TF-IDF**, and train machine learning models to predict sentiment.
+
+Two classification algorithms, **Naive Bayes** and **Logistic Regression**, are trained and evaluated to determine which model performs better.
+
+---
+
+## 🎯 Objective
+
+To build a sentiment classification model that can:
+
+* Identify the sentiment distribution in the dataset
+* Preprocess text data using NLP techniques
+* Convert text into numerical features using TF-IDF
+* Train multiple machine learning classifiers
+* Evaluate model performance
+* Visualize sentiment distribution
+* Generate WordClouds for different sentiment classes
+* Analyse incorrectly classified tweets
+* Demonstrate a real-world application of sentiment analysis
+
+---
+
+## 📊 Dataset
+
+**Dataset:** Twitter Sentiment Analysis Dataset
+
+The dataset contains Twitter text along with sentiment labels.
+
+### Sentiment Labels
+
+| Category | Sentiment |
+| -------: | --------- |
+|     `-1` | Negative  |
+|      `0` | Neutral   |
+|      `1` | Positive  |
+
+### Main Columns
+
+* `clean_text` – Text content of the tweet
+* `category` – Sentiment label
+
+The dataset contains a large collection of tweets, providing sufficient data for training and evaluating machine learning models.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Python**
+* **Pandas**
+* **NumPy**
+* **Scikit-learn**
+* **NLTK**
+* **Matplotlib**
+* **WordCloud**
+* **Jupyter Notebook**
+
+---
+
+## 🔄 Project Workflow
+
+```text
+Twitter Dataset
+       ↓
+Data Inspection
+       ↓
+Missing Value Handling
+       ↓
+Duplicate Removal
+       ↓
+Text Preprocessing
+       ↓
+Tokenization & Stopword Removal
+       ↓
+TF-IDF Feature Extraction
+       ↓
+80/20 Train-Test Split
+       ↓
+ ┌─────────────────────┐
+ │                     │
+Naive Bayes      Logistic Regression
+ │                     │
+ └──────────┬──────────┘
+            ↓
+     Model Evaluation
+            ↓
+Confusion Matrices
+            ↓
+     Error Analysis
+            ↓
+       Final Insights
+```
+
+---
+
+## 🧹 Text Preprocessing
+
+The following preprocessing techniques were applied:
+
+1. Converted text to lowercase
+2. Removed URLs
+3. Removed user mentions
+4. Removed hashtag symbols
+5. Removed punctuation
+6. Removed numerical values
+7. Tokenized the text
+8. Removed English stopwords
+9. Retained meaningful alphabetic words
+
+This preprocessing helps reduce unnecessary noise and prepares the text for machine learning.
+
+---
+
+## 🔢 TF-IDF Feature Extraction
+
+**TF-IDF (Term Frequency-Inverse Document Frequency)** was used to convert text into numerical features that machine learning algorithms can understand.
+
+TF-IDF assigns greater importance to words that are useful for distinguishing documents while reducing the importance of words that occur frequently across many documents.
+
+The implementation also uses **unigrams and bigrams** to capture individual words and two-word combinations.
+
+---
+
+## 🤖 Machine Learning Models
+
+Two classification algorithms were trained:
+
+### 1. Naive Bayes
+
+Multinomial Naive Bayes was used as one of the baseline classifiers.
+
+It is well suited for text classification problems because it works efficiently with numerical text features such as TF-IDF.
+
+### 2. Logistic Regression
+
+Logistic Regression was used as the second classification model.
+
+Its performance was compared with Naive Bayes using multiple evaluation metrics.
+
+---
+
+## 📏 Model Evaluation
+
+Both models were evaluated using:
+
+* **Accuracy**
+* **Precision**
+* **Recall**
+* **F1-Score**
+* **Confusion Matrix**
+
+A model comparison chart was also created to compare their performance.
+
+The **F1-score** was used as an important metric when identifying the better-performing model because it considers both precision and recall.
+
+---
+
+## 📊 Visualizations
+
+The project includes the following visualizations:
+
+### Sentiment Distribution
+
+A bar chart shows the number of tweets belonging to:
+
+* Positive
+* Neutral
+* Negative
+
+### Confusion Matrices
+
+Separate confusion matrices were generated for:
+
+* Naive Bayes
+* Logistic Regression
+
+These help identify which sentiment classes are being correctly or incorrectly predicted.
+
+### WordClouds
+
+WordClouds were generated separately for:
+
+* Positive sentiment
+* Negative sentiment
+* Neutral sentiment
+
+These visualizations highlight commonly occurring words within each sentiment category.
+
+### Model Comparison
+
+A bar chart compares:
+
+* Accuracy
+* Precision
+* Recall
+* F1-Score
+
+for both machine learning models.
+
+---
+
+## 🔎 Error Analysis
+
+Five misclassified tweets were examined to understand why the model made incorrect predictions.
+
+Possible reasons for misclassification include:
+
+* Sarcasm and irony
+* Mixed sentiments
+* Short or ambiguous tweets
+* Slang and informal language
+* Abbreviations and emojis
+* Limited contextual understanding of TF-IDF-based models
+
+This analysis helps identify limitations of traditional machine learning approaches for NLP tasks.
+
+---
+
+## 💡 Real-World Applications
+
+Sentiment analysis can be applied to:
+
+* **Customer feedback analysis**
+* **Social media monitoring**
+* **Product review analysis**
+* **Brand reputation monitoring**
+* **Public opinion analysis**
+* **Customer satisfaction analysis**
+* **Market research**
+
+For example, companies can analyse large volumes of customer comments and identify whether customers are generally satisfied, dissatisfied, or neutral.
+
+---
+
+## 📁 Project Structure
+
+```text
+OIBSIP/
+│
+└── DataAnalytics-L1-SentimentAnalysis/
+    │
+    ├── Twitter_Data.csv
+    ├── Sentiment_Analysis.ipynb
+    ├── sentiment_model_results.csv
+    ├── processed_twitter_sentiment.csv
+    └── README.md
+```
+
+---
+
+## 📄 Output Files
+
+### `sentiment_model_results.csv`
+
+Contains the performance metrics of the trained machine learning models.
+
+### `processed_twitter_sentiment.csv`
+
+Contains the processed text and sentiment information used during the analysis.
+
+---
+
+## 📈 Skills Demonstrated
+
+* Natural Language Processing
+* Text Preprocessing
+* Tokenization
+* Stopword Removal
+* TF-IDF
+* Machine Learning Classification
+* Naive Bayes
+* Logistic Regression
+* Model Evaluation
+* Confusion Matrix
+* Error Analysis
+* Data Visualization
+* Python
+* Pandas
+* Scikit-learn
+* NLTK
+
+
+---
+
+## ✅ Conclusion
+
+This project demonstrates how **Natural Language Processing and Machine Learning** can be combined to automatically classify Twitter text into positive, negative, and neutral sentiments.
+
+By comparing Naive Bayes and Logistic Regression, evaluating their performance using multiple metrics, and analysing model errors, the project provides a practical understanding of **text classification and sentiment analysis**.
+
+The resulting system can serve as a foundation for analysing customer feedback, social media opinions, and other large-scale text data.
+
+---
+
+
