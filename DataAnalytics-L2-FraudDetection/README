@@ -1,0 +1,317 @@
+# OIBSIP - Fraud Detection
+
+## 📌 Project Overview
+
+This project focuses on building a **Machine Learning pipeline to detect fraudulent financial transactions** from a highly imbalanced dataset.
+
+The project addresses the challenges of fraud detection by applying **SMOTE (Synthetic Minority Over-sampling Technique)** to balance the training data and comparing two machine learning models:
+
+* Logistic Regression
+* Random Forest
+
+The models are evaluated using **Precision, Recall, F1-Score, ROC-AUC, and PR-AUC** rather than relying only on accuracy.
+
+---
+
+## 🎯 Objective
+
+Build a machine learning system that can identify fraudulent transactions while handling severe class imbalance and minimizing the risk of missing actual fraudulent transactions.
+
+---
+
+## 📊 Dataset
+
+**Dataset:** Credit Card Fraud Detection
+
+The dataset contains **284,807 transactions**, including only **492 fraudulent transactions**, making it a highly imbalanced classification problem.
+
+### Dataset Features
+
+* `Time` – Seconds elapsed between transactions
+* `V1` to `V28` – Anonymized PCA-transformed transaction features
+* `Amount` – Transaction amount
+* `Class` – Target variable
+
+  * `0` → Legitimate transaction
+  * `1` → Fraudulent transaction
+
+### Class Distribution
+
+* Legitimate transactions: **284,315**
+* Fraudulent transactions: **492**
+* Fraud percentage: approximately **0.17%**
+
+---
+
+## 🛠️ Technologies Used
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* Imbalanced-learn
+* SMOTE
+* Jupyter Notebook
+
+---
+
+## 🔄 Project Workflow
+
+### 1. Data Loading and Inspection
+
+* Loaded the credit card transaction dataset.
+* Examined dataset dimensions and column names.
+* Checked missing values and duplicate records.
+* Generated descriptive statistics.
+
+### 2. Class Imbalance Analysis
+
+The dataset contains a very small number of fraudulent transactions compared with legitimate transactions.
+
+The class distribution was visualized to understand the severity of the imbalance.
+
+### 3. Exploratory Data Analysis
+
+The following analyses were performed:
+
+* Transaction amount comparison between fraud and legitimate transactions.
+* Log-scaled transaction amount visualization.
+* Fraudulent transactions by hour of the day.
+* Fraud rate by hour.
+
+### 4. Why Accuracy Alone Is Not Enough
+
+In a highly imbalanced dataset, a model can achieve very high accuracy simply by predicting most transactions as legitimate.
+
+For example, a model could classify almost every transaction as legitimate while still failing to identify many fraudulent transactions.
+
+Therefore, this project focuses on:
+
+* **Precision**
+* **Recall**
+* **F1-Score**
+* **ROC-AUC**
+* **PR-AUC**
+
+### 5. Train-Test Split
+
+The dataset was divided into training and testing sets using an **80:20 split**.
+
+Stratification was used to maintain the original fraud-to-legitimate transaction ratio in both sets.
+
+### 6. Feature Scaling
+
+`StandardScaler` was used to scale the features before applying the machine learning models.
+
+### 7. Handling Class Imbalance with SMOTE
+
+SMOTE was applied **only to the training data**.
+
+This creates synthetic examples of the minority class and helps the models learn patterns associated with fraudulent transactions.
+
+The original test set was kept untouched for realistic evaluation.
+
+### 8. Machine Learning Models
+
+Two classification algorithms were implemented:
+
+#### Logistic Regression
+
+Used as a simple and interpretable baseline classification model.
+
+#### Random Forest
+
+An ensemble learning model capable of capturing more complex relationships between transaction features.
+
+---
+
+## 📈 Model Evaluation
+
+The models were evaluated using:
+
+### Precision
+
+Measures how many transactions predicted as fraud were actually fraudulent.
+
+### Recall
+
+Measures how many actual fraudulent transactions were successfully detected.
+
+### F1-Score
+
+Provides a balance between Precision and Recall.
+
+### ROC-AUC
+
+Measures the model's ability to distinguish between fraudulent and legitimate transactions across different classification thresholds.
+
+### PR-AUC
+
+Provides a useful evaluation of performance for highly imbalanced classification problems.
+
+### Confusion Matrix
+
+Used to visualize:
+
+* True Positives
+* True Negatives
+* False Positives
+* False Negatives
+
+---
+
+## 📊 Visualizations
+
+The project generates the following visualizations:
+
+1. Fraud vs Legitimate Transaction Distribution
+2. Transaction Amount Comparison
+3. Log-Scaled Transaction Amount Comparison
+4. Fraudulent Transactions by Hour
+5. Fraud Rate by Hour
+6. Model Performance Comparison
+7. Logistic Regression Confusion Matrix
+8. Random Forest Confusion Matrix
+9. ROC Curve
+10. Precision-Recall Curve
+11. Random Forest Feature Importance
+12. Logistic Regression Coefficient Analysis
+
+---
+
+## 🔍 Feature Importance
+
+Random Forest feature importance is used to identify which transaction features contribute most to fraud classification.
+
+Logistic Regression coefficients are also analyzed to understand the relative influence of the features on the prediction.
+
+---
+
+## ⚖️ Precision vs Recall in Fraud Detection
+
+In fraud detection, **Recall is particularly important** because failing to identify a fraudulent transaction can result in financial loss.
+
+However, maximizing Recall alone can produce more false positives.
+
+Therefore, an effective fraud detection system should find an appropriate balance between:
+
+**Precision ↔ Recall**
+
+The F1-Score and PR-AUC provide additional ways to evaluate this balance.
+
+---
+
+## 🚀 Scalability
+
+A real-world financial system may need to process millions of transactions per hour.
+
+For a system handling approximately **1 million transactions per hour**, the trained model could be deployed as a real-time prediction service.
+
+Possible improvements include:
+
+* Real-time streaming data processing
+* Model deployment through an API
+* Distributed processing using technologies such as Apache Spark
+* Automated feature engineering
+* Model monitoring
+* Data drift detection
+* Threshold optimization
+* Periodic model retraining
+
+The model would be trained offline and then used to make fast predictions on incoming transactions.
+
+---
+
+## 📁 Project Structure
+
+```text
+OIBSIP/
+│
+└── DataAnalytics-L2-FraudDetection/
+    │
+    ├── creditcard.csv
+    ├── Fraud_Detection.ipynb
+    ├── fraud_model_comparison.csv
+    ├── fraud_feature_importance.csv
+    └── README.md
+```
+
+---
+
+## 📄 Output Files
+
+### `fraud_model_comparison.csv`
+
+Contains the evaluation results of:
+
+* Logistic Regression
+* Random Forest
+
+Metrics include:
+
+* Accuracy
+* Precision
+* Recall
+* F1-Score
+* ROC-AUC
+* PR-AUC
+
+### `fraud_feature_importance.csv`
+
+Contains the Random Forest feature importance scores used to identify influential transaction features.
+
+---
+
+## 💡 Key Insights
+
+* The dataset is **extremely imbalanced**, with fraudulent transactions representing only a small fraction of all transactions.
+* Accuracy alone is not sufficient for evaluating fraud detection models.
+* SMOTE helps address class imbalance during model training.
+* Recall is an important metric because undetected fraud can result in financial loss.
+* Precision is also important because excessive false alerts can inconvenience legitimate customers.
+* Random Forest provides feature importance that helps understand influential transaction characteristics.
+* PR-AUC is particularly useful when evaluating highly imbalanced classification problems.
+
+---
+
+## 🎓 Skills Demonstrated
+
+* Data Loading and Exploration
+* Exploratory Data Analysis
+* Class Imbalance Analysis
+* Data Preprocessing
+* Feature Scaling
+* SMOTE
+* Machine Learning Classification
+* Logistic Regression
+* Random Forest
+* Model Evaluation
+* Precision and Recall Analysis
+* ROC-AUC
+* PR-AUC
+* Confusion Matrix
+* Feature Importance
+* Data Visualization
+* Business-oriented Fraud Detection Analysis
+
+---
+
+## 🏢 Internship
+
+**Oasis Infobyte — Data Analytics Internship (OIBSIP)**
+
+**Task:** Fraud Detection
+
+This project was completed as part of the OIBSIP Data Analytics internship to demonstrate practical skills in machine learning, data analysis, and handling imbalanced datasets.
+
+---
+
+## ✅ Conclusion
+
+This project demonstrates an end-to-end machine learning approach for detecting fraudulent financial transactions.
+
+By combining **EDA, SMOTE, Logistic Regression, Random Forest, and multiple evaluation metrics**, the project addresses the challenges of highly imbalanced fraud detection data.
+
+The approach can be further improved through **hyperparameter tuning, threshold optimization, advanced feature engineering, real-time deployment, and continuous model monitoring**.
